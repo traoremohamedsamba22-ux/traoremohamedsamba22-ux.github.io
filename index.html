@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mohamed Samba Traoré — Data Science Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -32,54 +34,33 @@
     .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--accent); }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { background: var(--accent); color: var(--blue-dark); padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 700; font-size: 0.85rem; text-decoration: none; transition: all 0.2s; }
+    .nav-cta:hover { background: #7ecfff; transform: translateY(-1px); }
 
     /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 6rem 2rem 4rem;
-      background: linear-gradient(135deg, #0a1628 0%, #0d2137 50%, #0a1f35 100%);
+    #hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 7rem 2rem 4rem;
+      background: var(--blue-dark);
       position: relative; overflow: hidden;
     }
-
-    /* Animated chart bars */
-    .chart-bg {
-      position: absolute; bottom: 0; right: 0;
-      width: 55%; height: 100%;
-      display: flex; align-items: flex-end;
-      gap: 12px; padding: 0 60px 0 0;
-      opacity: 0.15;
-    }
-    .bar {
-      width: 40px; border-radius: 4px 4px 0 0;
-      background: linear-gradient(to top, var(--blue-light), var(--accent));
-      animation: grow 2s ease-out forwards;
-      transform-origin: bottom;
-    }
-    @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-
-    /* Pie chart decoration */
     .pie-bg {
-      position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+      position: absolute; top: 50%; right: 8%;
+      transform: translateY(-50%);
       width: 280px; height: 280px; opacity: 0.08;
     }
     .pie-bg svg { width: 100%; height: 100%; }
-
-    /* Line chart */
     .line-bg {
       position: absolute; bottom: 20%; right: 0; left: 40%;
       height: 120px; opacity: 0.12;
     }
     .line-bg svg { width: 100%; height: 100%; }
-
-    /* Grid dots */
     .grid-dots {
       position: absolute; top: 0; left: 0; right: 0; bottom: 0;
       background-image: radial-gradient(circle, rgba(77,184,255,0.08) 1px, transparent 1px);
       background-size: 40px 40px;
     }
-
     .hero-content { position: relative; z-index: 2; max-width: 650px; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -89,19 +70,35 @@
       border-radius: 50px; font-size: 0.85rem; font-weight: 600;
       margin-bottom: 1.5rem;
     }
-    .otw-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 1.5s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
-
-    .hero h1 { font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
-    .hero h1 span { color: var(--accent); }
-    .hero-subtitle { font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem; line-height: 1.7; }
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
-    .tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(77,184,255,0.2); padding: 0.35rem 0.9rem; border-radius: 50px; font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.8); }
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary { background: var(--blue-light); color: white; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
-    .btn-primary:hover { background: #0070cc; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(30,144,255,0.4); }
-    .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--white); padding: 0.85rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .otw-dot { width: 8px; height: 8px; border-radius: 50%; background: #4caf50; display: inline-block; }
+    .hero-name {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800; line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-role { color: var(--gray); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem; max-width: 520px; }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
+    .hero-chip {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.35rem 0.9rem; border-radius: 50px; font-size: 0.82rem; color: rgba(255,255,255,0.8);
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent); color: var(--blue-dark);
+      padding: 0.85rem 2rem; border-radius: 50px;
+      font-weight: 700; text-decoration: none; font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { background: #7ecfff; transform: translateY(-2px); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.06); color: var(--white);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 0.85rem 2rem; border-radius: 50px;
+      font-weight: 600; text-decoration: none; font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
 
     /* SECTIONS */
     section { padding: 5rem 2rem; }
@@ -131,9 +128,18 @@
 
     /* PROJECTS */
     #projects { background: var(--blue-mid); }
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap: 2rem; }
-    .project-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(77,184,255,0.1); border-radius: 24px; overflow: hidden; transition: all 0.3s; }
-    .project-card:hover { border-color: rgba(77,184,255,0.4); transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+    .project-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(77,184,255,0.12); border-radius: 24px; overflow: hidden; transition: all 0.2s; }
+    .project-card:hover { border-color: rgba(77,184,255,0.4); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .mini-chart { display: flex; align-items: flex-end; gap: 3px; height: 40px; padding: 0.5rem 0; }
+    .mini-bar { flex: 1; background: linear-gradient(to top, rgba(77,184,255,0.6), rgba(77,184,255,0.2)); border-radius: 3px 3px 0 0; min-height: 6px; }
+    .mini-bar:nth-child(1) { height: 40%; }
+    .mini-bar:nth-child(2) { height: 70%; }
+    .mini-bar:nth-child(3) { height: 55%; }
+    .mini-bar:nth-child(4) { height: 90%; }
+    .mini-bar:nth-child(5) { height: 65%; }
+    .mini-bar:nth-child(6) { height: 80%; }
+    .mini-bar:nth-child(7) { height: 50%; }
     .project-header { padding: 2rem 2rem 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
     .project-icon { width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(135deg, #1a3a5c, var(--blue-light)); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
     .project-badge { background: rgba(77,184,255,0.1); border: 1px solid rgba(77,184,255,0.25); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
@@ -142,27 +148,24 @@
     .project-desc { color: var(--gray); font-size: 0.93rem; margin-bottom: 1.5rem; line-height: 1.7; }
     .highlight { display: flex; align-items: flex-start; gap: 0.6rem; color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 0.5rem; }
     .highlight::before { content: '→'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
-    .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.2rem 0; }
-    .tech-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 0.3rem 0.75rem; border-radius: 8px; font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.7); font-family: monospace; }
-    .project-result { background: linear-gradient(135deg, rgba(77,184,255,0.08), rgba(26,58,92,0.3)); border: 1px solid rgba(77,184,255,0.2); border-radius: 12px; padding: 1rem 1.2rem; font-size: 0.88rem; color: rgba(255,255,255,0.75); }
-    .project-result strong { color: var(--gold); }
-
-    /* MINI CHART inside project card */
-    .mini-chart { display: flex; align-items: flex-end; gap: 4px; height: 40px; margin: 1rem 0; }
-    .mini-bar { border-radius: 2px 2px 0 0; background: linear-gradient(to top, var(--blue-light), var(--accent)); opacity: 0.7; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.2rem 0; }
+    .tech-tag { background: rgba(240,165,0,0.1); border: 1px solid rgba(240,165,0,0.25); color: var(--gold); padding: 0.25rem 0.7rem; border-radius: 50px; font-size: 0.78rem; font-weight: 600; }
+    .project-result { background: rgba(77,184,255,0.06); border: 1px solid rgba(77,184,255,0.15); border-radius: 12px; padding: 0.9rem 1rem; font-size: 0.87rem; color: rgba(255,255,255,0.8); margin-top: 1rem; }
+    .project-result strong { color: var(--accent); }
 
     /* EDUCATION */
     #education { background: var(--blue-dark); }
-    .edu-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(77,184,255,0.1); border-radius: 24px; padding: 2.5rem; display: flex; gap: 2rem; align-items: flex-start; }
-    .edu-icon { width: 64px; height: 64px; border-radius: 18px; background: linear-gradient(135deg, #1a3a5c, var(--blue-light)); display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; }
-    .edu-degree { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .edu-school { color: var(--accent); font-weight: 600; margin-bottom: 0.3rem; }
-    .edu-date { color: var(--gray); font-size: 0.85rem; margin-bottom: 1.2rem; }
-    .courses-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .course-tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(77,184,255,0.15); padding: 0.3rem 0.8rem; border-radius: 8px; font-size: 0.8rem; color: rgba(255,255,255,0.65); }
+    .edu-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(77,184,255,0.1); border-radius: 24px; padding: 2.5rem; }
+    .edu-header { display: flex; align-items: flex-start; gap: 1.5rem; margin-bottom: 2rem; }
+    .edu-icon { font-size: 2.5rem; flex-shrink: 0; }
+    .edu-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .edu-school { color: var(--accent); font-weight: 600; margin-bottom: 0.2rem; }
+    .edu-date { color: var(--gray); font-size: 0.9rem; }
+    .courses-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .course-tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); padding: 0.4rem 0.9rem; border-radius: 50px; font-size: 0.83rem; }
 
     /* CONTACT */
-    #contact { background: linear-gradient(135deg, var(--blue-mid), #081525); text-align: center; }
+    #contact { background: var(--blue-mid); text-align: center; }
     .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
     .contact-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 1.8rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.2s; }
     .contact-btn.linkedin { background: #0077b5; color: white; }
@@ -172,247 +175,304 @@
     .contact-btn.email { background: rgba(77,184,255,0.12); color: var(--accent); border: 1px solid rgba(77,184,255,0.3); }
     .contact-btn.email:hover { background: rgba(77,184,255,0.22); transform: translateY(-2px); }
 
-    footer { background: var(--blue-dark); border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem; text-align: center; color: rgba(255,255,255,0.3); font-size: 0.85rem; }
+    footer { background: var(--blue-dark); border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem; text-align: center; color: var(--gray); font-size: 0.85rem; }
 
     @media (max-width: 768px) {
-      .about-grid, .projects-grid { grid-template-columns: 1fr; }
-      .edu-card { flex-direction: column; }
+      .about-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
+      .projects-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">MST.</div>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#education">Education</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="grid-dots"></div>
-
-  <!-- Animated bars background -->
-  <div class="chart-bg">
-    <div class="bar" style="height:45%;animation-delay:0.1s"></div>
-    <div class="bar" style="height:70%;animation-delay:0.2s"></div>
-    <div class="bar" style="height:55%;animation-delay:0.3s"></div>
-    <div class="bar" style="height:85%;animation-delay:0.4s"></div>
-    <div class="bar" style="height:60%;animation-delay:0.5s"></div>
-    <div class="bar" style="height:95%;animation-delay:0.6s"></div>
-    <div class="bar" style="height:75%;animation-delay:0.7s"></div>
-    <div class="bar" style="height:50%;animation-delay:0.8s"></div>
-    <div class="bar" style="height:80%;animation-delay:0.9s"></div>
-  </div>
-
-  <!-- Pie chart SVG -->
-  <div class="pie-bg">
-    <svg viewBox="0 0 200 200">
-      <circle cx="100" cy="100" r="80" fill="none" stroke="#4db8ff" stroke-width="2"/>
-      <path d="M100,100 L100,20 A80,80 0 0,1 169,140 Z" fill="rgba(77,184,255,0.3)"/>
-      <path d="M100,100 L169,140 A80,80 0 0,1 31,140 Z" fill="rgba(30,144,255,0.2)"/>
-      <path d="M100,100 L31,140 A80,80 0 0,1 100,20 Z" fill="rgba(240,165,0,0.2)"/>
-    </svg>
-  </div>
-
-  <!-- Line chart SVG -->
-  <div class="line-bg">
-    <svg viewBox="0 0 600 120" preserveAspectRatio="none">
-      <polyline points="0,100 80,70 160,85 240,40 320,55 400,20 480,35 560,10 600,25"
-        fill="none" stroke="#f0a500" stroke-width="2.5"/>
-      <circle cx="400" cy="20" r="6" fill="#f0a500"/>
-    </svg>
-  </div>
-
-  <div class="hero-content">
-    <div class="hero-badge"><div class="otw-dot"></div> Open to Internship & Co-op 2025</div>
-    <h1>Mohamed Samba<br><span>Traoré</span></h1>
-    <p class="hero-subtitle">Data Science & AI Student · Turning raw data into meaningful insights with Python, statistics and machine learning.</p>
-    <div class="hero-tags">
-      <span class="tag">🐍 Python</span>
-      <span class="tag">📊 Statistics</span>
-      <span class="tag">🤖 Machine Learning</span>
-      <span class="tag">🗄️ SQL</span>
-      <span class="tag">📈 Data Visualization</span>
-      <span class="tag">☁️ Cloud Tools</span>
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">MST.</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
     </div>
-    <div class="hero-btns">
-      <a href="#projects" class="btn-primary">📊 View Projects</a>
-      <a href="#contact" class="btn-secondary">📩 Contact Me</a>
-    </div>
-  </div>
-</section>
+    <a href="#contact" class="nav-cta">Open to Internship &amp; Co-op 2025</a>
+  </nav>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-text">
-        <div class="section-label">About Me</div>
-        <h2 class="section-title">Data-driven. Curious. Rigorous.</h2>
-        <p>I'm a <strong>Data Science & AI student</strong> at La Cité College (Ottawa), passionate about transforming raw data into actionable insights.</p>
-        <p>My training covers the full data pipeline: from <strong>collection and cleaning</strong>, to <strong>statistical analysis</strong>, <strong>machine learning</strong>, and <strong>visualization</strong>.</p>
-        <p>I enjoy solving real-world problems with code — whether it's analyzing real estate markets or building health monitoring applications.</p>
-        <p>Currently looking for a <strong>stage or co-op</strong> where I can apply my skills and keep growing.</p>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="grid-dots"></div>
+    <div class="pie-bg">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#4db8ff" stroke-width="2"/>
+        <path d="M50 10 A40 40 0 0 1 90 50 L50 50 Z" fill="#4db8ff" opacity="0.5"/>
+        <path d="M90 50 A40 40 0 0 1 30 88 L50 50 Z" fill="#f0a500" opacity="0.5"/>
+        <path d="M30 88 A40 40 0 0 1 10 50 L50 50 Z" fill="#1e90ff" opacity="0.5"/>
+        <path d="M10 50 A40 40 0 0 1 50 10 L50 50 Z" fill="#4db8ff" opacity="0.3"/>
+      </svg>
+    </div>
+    <div class="line-bg">
+      <svg viewBox="0 0 200 60" preserveAspectRatio="none">
+        <polyline points="0,50 30,30 60,40 90,15 120,25 150,10 200,20" fill="none" stroke="#4db8ff" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="hero-content container">
+      <div class="hero-badge">
+        <span class="otw-dot"></span>
+        Open to Internship &amp; Co-op 2025
       </div>
-      <div class="stats-grid">
-        <div class="stat-card"><div class="stat-number">2</div><div class="stat-label">Completed Projects</div></div>
-        <div class="stat-card"><div class="stat-number">15+</div><div class="stat-label">Courses Completed</div></div>
-        <div class="stat-card"><div class="stat-number">5+</div><div class="stat-label">Python Libraries</div></div>
-        <div class="stat-card"><div class="stat-number">100%</div><div class="stat-label">Motivated 🔥</div></div>
+      <h1 class="hero-name">Mohamed Samba<br><span>Traoré</span></h1>
+      <p class="hero-role">Data Science &amp; AI Student · Turning raw data into meaningful insights with Python, statistics and machine learning.</p>
+      <div class="hero-chips">
+        <span class="hero-chip">🐍 Python</span>
+        <span class="hero-chip">📊 Statistics</span>
+        <span class="hero-chip">🤖 Machine Learning</span>
+        <span class="hero-chip">🗄️ SQL</span>
+        <span class="hero-chip">📈 Data Visualization</span>
+        <span class="hero-chip">☁️ Cloud Tools</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">📊 View Projects</a>
+        <a href="#contact" class="btn-secondary">📩 Contact Me</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="container">
-    <div class="section-label">Technical Skills</div>
-    <h2 class="section-title">My Stack</h2>
-    <p class="section-sub">Tools and technologies I work with daily.</p>
-    <div class="skills-grid">
-      <div class="skill-category">
-        <div class="skill-cat-title">🐍 Languages</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Python</span>
-          <span class="skill-pill">SQL</span>
-          <span class="skill-pill">R (notions)</span>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">About Me</p>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-title">Data-driven. Curious. Rigorous.</h2>
+          <p>I'm a <strong>Data Science &amp; AI student</strong> at La Cité College (Ottawa), passionate about transforming raw data into actionable insights.</p>
+          <p>My training covers the full data pipeline: from <strong>collection and cleaning</strong>, to <strong>statistical analysis</strong>, <strong>machine learning</strong>, and <strong>visualization</strong>.</p>
+          <p>I enjoy solving real-world problems with code — whether it's analyzing real estate markets or building health monitoring applications.</p>
+          <p>Currently looking for a <strong>stage or co-op</strong> where I can apply my skills and keep growing.</p>
         </div>
-      </div>
-      <div class="skill-category">
-        <div class="skill-cat-title">📦 Libraries</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Pandas</span>
-          <span class="skill-pill">NumPy</span>
-          <span class="skill-pill">SciPy</span>
-          <span class="skill-pill">Scikit-learn</span>
-          <span class="skill-pill">Matplotlib</span>
-          <span class="skill-pill">Seaborn</span>
-        </div>
-      </div>
-      <div class="skill-category">
-        <div class="skill-cat-title">🤖 AI & ML</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Machine Learning</span>
-          <span class="skill-pill">Deep Learning</span>
-          <span class="skill-pill">NLP (intro)</span>
-          <span class="skill-pill">Statistical Testing</span>
-        </div>
-      </div>
-      <div class="skill-category">
-        <div class="skill-cat-title">🛠️ Tools</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Jupyter</span>
-          <span class="skill-pill">Git</span>
-          <span class="skill-pill">Google Colab</span>
-          <span class="skill-pill">Cloud Tools</span>
-          <span class="skill-pill">Big Data</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="container">
-    <div class="section-label">Portfolio</div>
-    <h2 class="section-title">Featured Projects</h2>
-    <p class="section-sub">Real projects built with real data.</p>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon">🏠</div>
-          <span class="project-badge">Statistics · Python</span>
-        </div>
-        <div class="project-body">
-          <div class="mini-chart">
-            <div class="mini-bar" style="width:16px;height:40%"></div>
-            <div class="mini-bar" style="width:16px;height:65%"></div>
-            <div class="mini-bar" style="width:16px;height:50%"></div>
-            <div class="mini-bar" style="width:16px;height:85%"></div>
-            <div class="mini-bar" style="width:16px;height:55%"></div>
-            <div class="mini-bar" style="width:16px;height:100%"></div>
-            <div class="mini-bar" style="width:16px;height:70%"></div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Completed Projects</div>
           </div>
-          <div class="project-title">Real Estate Market Statistical Analysis</div>
-          <p class="project-desc">Full statistical analysis of the Ames Housing Dataset, comparing sale price distributions between two neighborhoods using rigorous statistical methods.</p>
-          <div class="highlight">Descriptive statistics with Pandas (mean, std, median)</div>
-          <div class="highlight">Overlaid histograms, CDF curves & QQ-plots</div>
-          <div class="highlight">Kolmogorov-Smirnov & Shapiro-Wilk tests</div>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Pandas</span>
-            <span class="tech-tag">SciPy</span>
-            <span class="tech-tag">Matplotlib</span>
-            <span class="tech-tag">Jupyter</span>
+          <div class="stat-card">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Courses Completed</div>
           </div>
-          <div class="project-result"><strong>📊 Result:</strong> Statistical confirmation (p &lt; 0.05) — two significantly different market distributions.</div>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-header">
-          <div class="project-icon">💊</div>
-          <span class="project-badge">App · Health Data</span>
-        </div>
-        <div class="project-body">
-          <div class="mini-chart">
-            <div class="mini-bar" style="width:16px;height:60%;background:linear-gradient(to top,#f0a500,#ffd166)"></div>
-            <div class="mini-bar" style="width:16px;height:75%;background:linear-gradient(to top,#f0a500,#ffd166)"></div>
-            <div class="mini-bar" style="width:16px;height:45%;background:linear-gradient(to top,#f0a500,#ffd166)"></div>
-            <div class="mini-bar" style="width:16px;height:90%;background:linear-gradient(to top,#f0a500,#ffd166)"></div>
-            <div class="mini-bar" style="width:16px;height:65%;background:linear-gradient(to top,#f0a500,#ffd166)"></div>
-            <div class="mini-bar" style="width:16px;height:80%;background:linear-gradient(to top,#f0a500,#ffd166)"></div>
-            <div class="mini-bar" style="width:16px;height:55%;background:linear-gradient(to top,#f0a500,#ffd166)"></div>
+          <div class="stat-card">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Python Libraries</div>
           </div>
-          <div class="project-title">Blood Pressure Tracking Application</div>
-          <p class="project-desc">Python application to record, visualize and analyze blood pressure measurements over time with automatic WHO health alerts.</p>
-          <div class="highlight">Time-series visualization of health evolution</div>
-          <div class="highlight">Automatic WHO threshold alerts (hypertension/hypotension)</div>
-          <div class="highlight">Clean and intuitive user interface</div>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Pandas</span>
-            <span class="tech-tag">Matplotlib</span>
-            <span class="tech-tag">Health Data</span>
+          <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Motivated 🔥</div>
           </div>
-          <div class="project-result"><strong>💡 Impact:</strong> End-to-end data application bridging data science and real-world healthcare utility.</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- EDUCATION -->
-<section id="education">
-  <div class="container">
-    <div class="section-label">Education</div>
-    <h2 class="section-title">Academic Background</h2>
-    <p class="section-sub">My training at La Cité College, Ottawa.</p>
-    <div class="edu-card">
-      <div class="edu-icon">🎓</div>
-      <div>
-        <div class="edu-degree">Diploma in Applied Data Science & Artificial Intelligence</div>
-        <div class="edu-school">La Cité — Collège d'arts appliqués et de technologie · Ottawa, ON</div>
-        <div class="edu-date">2024 – 2026 (In progress)</div>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">Technical Skills</p>
+      <h2 class="section-title">My Stack</h2>
+      <p class="section-sub">Tools and technologies I work with daily.</p>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <div class="skill-cat-title">🐍 Languages</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">R (notions)</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-title">📦 Libraries</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Pandas</span>
+            <span class="skill-pill">NumPy</span>
+            <span class="skill-pill">SciPy</span>
+            <span class="skill-pill">Scikit-learn</span>
+            <span class="skill-pill">Matplotlib</span>
+            <span class="skill-pill">Seaborn</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-title">🤖 AI &amp; ML</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Machine Learning</span>
+            <span class="skill-pill">Deep Learning</span>
+            <span class="skill-pill">NLP (intro)</span>
+            <span class="skill-pill">Statistical Testing</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-title">🛠️ Tools</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Jupyter</span>
+            <span class="skill-pill">Git</span>
+            <span class="skill-pill">Google Colab</span>
+            <span class="skill-pill">Cloud Tools</span>
+            <span class="skill-pill">Big Data</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-sub">Real projects built with real data.</p>
+      <div class="projects-grid">
+
+        <!-- Project 1: Real Estate -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">🏠</div>
+            <span class="project-badge">Statistics · Python</span>
+          </div>
+          <div class="project-body">
+            <div class="mini-chart">
+              <div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-bar"></div>
+              <div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-bar"></div>
+              <div class="mini-bar"></div>
+            </div>
+            <div class="project-title">Real Estate Market Statistical Analysis</div>
+            <p class="project-desc">Full statistical analysis of the Ames Housing Dataset, comparing sale price distributions between two neighborhoods using rigorous statistical methods.</p>
+            <div class="highlight">Descriptive statistics with Pandas (mean, std, median)</div>
+            <div class="highlight">Overlaid histograms, CDF curves &amp; QQ-plots</div>
+            <div class="highlight">Kolmogorov-Smirnov &amp; Shapiro-Wilk tests</div>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Pandas</span>
+              <span class="tech-tag">SciPy</span>
+              <span class="tech-tag">Matplotlib</span>
+              <span class="tech-tag">Jupyter</span>
+            </div>
+            <div class="project-result"><strong>📊 Result:</strong> Statistical confirmation (p &lt; 0.05) — two significantly different market distributions.</div>
+          </div>
+        </div>
+
+        <!-- Project 2: Blood Pressure -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">💊</div>
+            <span class="project-badge">App · Health Data</span>
+          </div>
+          <div class="project-body">
+            <div class="mini-chart">
+              <div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-bar"></div>
+              <div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-bar"></div>
+              <div class="mini-bar"></div>
+            </div>
+            <div class="project-title">Blood Pressure Tracking Application</div>
+            <p class="project-desc">Python application to record, visualize and analyze blood pressure measurements over time with automatic WHO health alerts.</p>
+            <div class="highlight">Time-series visualization of health evolution</div>
+            <div class="highlight">Automatic WHO threshold alerts (hypertension/hypotension)</div>
+            <div class="highlight">Clean and intuitive user interface</div>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Pandas</span>
+              <span class="tech-tag">Matplotlib</span>
+              <span class="tech-tag">Health Data</span>
+            </div>
+            <div class="project-result"><strong>💡 Impact:</strong> End-to-end data application bridging data science and real-world healthcare utility.</div>
+          </div>
+        </div>
+
+        <!-- Project 3: AWS -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">☁️</div>
+            <span class="project-badge">Cloud · AWS</span>
+          </div>
+          <div class="project-body">
+            <div class="mini-chart">
+              <div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-bar"></div>
+              <div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-bar"></div>
+              <div class="mini-bar"></div>
+            </div>
+            <div class="project-title">AWS Multi-Tier Cloud Infrastructure Deployment</div>
+            <p class="project-desc">Full deployment of a scalable, highly available cloud architecture on AWS — integrating EC2, RDS MySQL, S3 static hosting, and an Application Load Balancer with path-based routing in the us-east-1 region.</p>
+            <div class="highlight">EC2 instances across 2 availability zones (high availability)</div>
+            <div class="highlight">MySQL database on Amazon RDS with security group isolation</div>
+            <div class="highlight">Path-based routing via Application Load Balancer (EC2 + S3)</div>
+            <div class="project-tech">
+              <span class="tech-tag">AWS EC2</span>
+              <span class="tech-tag">Amazon RDS</span>
+              <span class="tech-tag">Amazon S3</span>
+              <span class="tech-tag">Load Balancer</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">PHP</span>
+              <span class="tech-tag">Linux</span>
+            </div>
+            <div class="project-result"><strong>✅ Result:</strong> End-to-end validated architecture — 7 employees displayed via load-balanced EC2 + RDS, S3 redirect confirmed via HTTP 302.</div>
+          </div>
+        </div>
+
+        <!-- Project 4: Urgences Ottawa -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">🏥</div>
+            <span class="project-badge">ML · Santé</span>
+          </div>
+          <div class="project-body">
+            <div class="mini-chart">
+              <div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-bar"></div>
+              <div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-bar"></div>
+              <div class="mini-bar"></div>
+            </div>
+            <div class="project-title">Prédiction du Temps d'Attente aux Urgences</div>
+            <p class="project-desc">Modèle ML pour prédire le temps d'attente aux urgences à Ottawa — pipeline complet sur 2 121 observations hospitalières réelles, avec comparaison de 4 algorithmes et optimisation des hyperparamètres.</p>
+            <div class="highlight">Pipeline complet : nettoyage, StandardScaler, OneHotEncoder, split 80/20</div>
+            <div class="highlight">4 modèles comparés : Régression Linéaire, Random Forest, Gradient Boosting, XGBoost</div>
+            <div class="highlight">GridSearchCV + validation croisée 5-fold pour optimisation</div>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Scikit-learn</span>
+              <span class="tech-tag">XGBoost</span>
+              <span class="tech-tag">Pandas</span>
+              <span class="tech-tag">Matplotlib</span>
+              <span class="tech-tag">Seaborn</span>
+            </div>
+            <div class="project-result"><strong>🏆 Meilleur modèle:</strong> Gradient Boosting — R²=0.780, RMSE=14.5 min. Régression linéaire retenue pour son explicabilité en contexte médical.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <p class="section-label">Education</p>
+      <h2 class="section-title">Academic Background</h2>
+      <p class="section-sub">My training at La Cité College, Ottawa.</p>
+      <div class="edu-card">
+        <div class="edu-header">
+          <div class="edu-icon">🎓</div>
+          <div>
+            <div class="edu-title">Diploma in Applied Data Science &amp; Artificial Intelligence</div>
+            <div class="edu-school">La Cité — Collège d'arts appliqués et de technologie · Ottawa, ON</div>
+            <div class="edu-date">2024 – 2026 (In progress)</div>
+          </div>
+        </div>
         <div class="courses-grid">
           <span class="course-tag">Applied Statistics</span>
-          <span class="course-tag">AI & Data Preprocessing</span>
+          <span class="course-tag">AI &amp; Data Preprocessing</span>
           <span class="course-tag">Machine Learning</span>
           <span class="course-tag">Data Visualization</span>
           <span class="course-tag">Big Data</span>
           <span class="course-tag">Data Exploration</span>
           <span class="course-tag">Advanced Databases</span>
           <span class="course-tag">Cloud Tools</span>
-          <span class="course-tag">Ethics & Data Security</span>
-          <span class="course-tag">Data Collection & Cleaning</span>
+          <span class="course-tag">Ethics &amp; Data Security</span>
+          <span class="course-tag">Data Collection &amp; Cleaning</span>
           <span class="course-tag">Quality Control</span>
           <span class="course-tag">Advanced Programming</span>
           <span class="course-tag">Data Science Project</span>
@@ -420,26 +480,25 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="section-label">Contact</div>
-    <h2 class="section-title">Let's Connect</h2>
-    <p class="section-sub">Open to internship & co-op opportunities in Data Science, Data Analysis or AI.</p>
-    <div class="contact-links">
-      <a href="https://linkedin.com/in/samba-traoré-30bbaa159" target="_blank" class="contact-btn linkedin">💼 LinkedIn</a>
-      <a href="https://github.com/traoremohamedsamba22-ux" target="_blank" class="contact-btn github">🐙 GitHub</a>
-      <a href="mailto:traoremohamedsamba22@gmail.com" class="contact-btn email">📩 Email Me</a>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="section-sub">Open to internship &amp; co-op opportunities in Data Science, Data Analysis or AI.</p>
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/sambatraore-data" class="contact-btn linkedin">💼 LinkedIn</a>
+        <a href="https://github.com/traoremohamedsamba22-ux" class="contact-btn github">🐙 GitHub</a>
+        <a href="mailto:traoremohamedsamba22@gmail.com" class="contact-btn email">📩 Email Me</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <p>© 2025 Mohamed Samba Traoré · Built with ❤️ · Data Science & AI Student @ La Cité</p>
-</footer>
+  <footer>
+    © 2025 Mohamed Samba Traoré · Built with ❤️ · Data Science &amp; AI Student @ La Cité
+  </footer>
 
 </body>
 </html>
